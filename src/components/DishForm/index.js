@@ -4,7 +4,7 @@ import { filterValues, postDish } from "../../helpers/apiUtil";
 import { dishValidationSchema } from "./dishValidationSchema";
 import TextInput from "./TextInput";
 import SelectInput from "./SelectInput";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Notification from "../Notification";
 import useStatus from "./useStatus";
 import getNotificationData from "./getNotificationData";
@@ -30,9 +30,7 @@ const DishForm = () => {
         const response = await postDish(filteredValues);
 
         if (response.ok) {
-          const responseData = await response.json();
-          console.log(responseData);
-          console.log("Dish was added");
+          await response.json();
           resetForm();
           setStatus("success");
           setSubmitting(false);
@@ -41,8 +39,8 @@ const DishForm = () => {
           setErrors(errorData);
         }
       } catch (error) {
-        console.error("An error occurred:", error);
         setStatus("error");
+        console.error("An error occurred:", error);
       }
     },
   });
@@ -63,7 +61,7 @@ const DishForm = () => {
         </div>
         <div>
           <TextInput
-            label="Preparation time:*"
+            label="Preparation time*:"
             name="preparation_time"
             type="text"
             placeholder="HH:MM:SS"
@@ -72,7 +70,7 @@ const DishForm = () => {
         </div>
         <div>
           <SelectInput
-            label="Type of dish:*"
+            label="Type of dish*:"
             name="type"
             options={[
               { value: "", text: "" },
@@ -86,14 +84,14 @@ const DishForm = () => {
         {formik.values.type === "pizza" && (
           <div>
             <TextInput
-              label="Number of slices:*"
+              label="Number of slices*:"
               name="no_of_slices"
               type="number"
               formik={formik}
             />
 
             <TextInput
-              label="Diameter:*"
+              label="Diameter*:"
               name="diameter"
               type="number"
               step="0.01"
@@ -104,7 +102,7 @@ const DishForm = () => {
         {formik.values.type === "soup" && (
           <div>
             <TextInput
-              label="Spiciness scale (1-10):*"
+              label="Spiciness scale (1-10)*:"
               name="spiciness_scale"
               type="number"
               formik={formik}
@@ -114,7 +112,7 @@ const DishForm = () => {
         {formik.values.type === "sandwich" && (
           <div>
             <TextInput
-              label="Slices of bread:*"
+              label="Slices of bread*:"
               name="slices_of_bread"
               type="number"
               formik={formik}
