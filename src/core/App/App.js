@@ -1,5 +1,12 @@
+import DishForm from "../../components/DishForm";
+import { Layout } from "../../components/Layout/styled";
+
 const App = () => {
-  return <>Hello world</>;
+  return (
+    <Layout>
+      <DishForm />
+    </Layout>
+  );
 };
 
 export default App;
