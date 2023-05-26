@@ -1,10 +1,16 @@
 import { useFormik } from "formik";
+import { Form, Button } from "./styled";
 import { filterValues, postDish } from "../../helpers/apiUtil";
 import { dishValidationSchema } from "./dishValidationSchema";
 import TextInput from "./TextInput";
 import SelectInput from "./SelectInput";
+import { useState, useEffect } from "react";
+import Notification from "../Notification";
+import useStatus from "./useStatus";
+import getNotificationData from "./getNotificationData";
 
 const DishForm = () => {
+  const [status, setStatus] = useState();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -17,6 +23,7 @@ const DishForm = () => {
     },
     validationSchema: dishValidationSchema,
     onSubmit: async (values, { setSubmitting, setErrors, resetForm }) => {
+      setStatus("pending");
       try {
         const filteredValues = filterValues(values);
 
@@ -27,6 +34,7 @@ const DishForm = () => {
           console.log(responseData);
           console.log("Dish was added");
           resetForm();
+          setStatus("success");
           setSubmitting(false);
         } else {
           const errorData = await response.json();
@@ -34,82 +42,95 @@ const DishForm = () => {
         }
       } catch (error) {
         console.error("An error occurred:", error);
+        setStatus("error");
       }
     },
   });
 
-  return (
-    <form onSubmit={formik.handleSubmit}>
-      <div>
-        <TextInput
-          label="Dish name*:"
-          name="name"
-          type="text"
-          formik={formik}
-        />
-      </div>
-      <div>
-        <TextInput
-          label="Preparation time:*"
-          name="preparation_time"
-          type="text"
-          placeholder="HH:MM:SS"
-          formik={formik}
-        />
-      </div>
-      <div>
-        <SelectInput
-          label="Type of dish:*"
-          name="type"
-          options={[
-            { value: "", text: "" },
-            { value: "pizza", text: "Pizza" },
-            { value: "soup", text: "Soup" },
-            { value: "sandwich", text: "Sandwich" },
-          ]}
-          formik={formik}
-        />
-      </div>
-      {formik.values.type === "pizza" && (
-        <div>
-          <TextInput
-            label="Number of slices:*"
-            name="no_of_slices"
-            type="number"
-            formik={formik}
-          />
+  useStatus(status, setStatus);
+  const notification = getNotificationData(status);
 
-          <TextInput
-            label="Diameter:*"
-            name="diameter"
-            type="number"
-            step="0.01"
-            formik={formik}
-          />
-        </div>
-      )}
-      {formik.values.type === "soup" && (
+  return (
+    <>
+      <Form onSubmit={formik.handleSubmit}>
         <div>
           <TextInput
-            label="Spiciness scale (1-10):*"
-            name="spiciness_scale"
-            type="number"
+            label="Dish name*:"
+            name="name"
+            type="text"
             formik={formik}
           />
         </div>
-      )}
-      {formik.values.type === "sandwich" && (
         <div>
           <TextInput
-            label="Slices of bread:*"
-            name="slices_of_bread"
-            type="number"
+            label="Preparation time:*"
+            name="preparation_time"
+            type="text"
+            placeholder="HH:MM:SS"
             formik={formik}
           />
         </div>
+        <div>
+          <SelectInput
+            label="Type of dish:*"
+            name="type"
+            options={[
+              { value: "", text: "" },
+              { value: "pizza", text: "Pizza" },
+              { value: "soup", text: "Soup" },
+              { value: "sandwich", text: "Sandwich" },
+            ]}
+            formik={formik}
+          />
+        </div>
+        {formik.values.type === "pizza" && (
+          <div>
+            <TextInput
+              label="Number of slices:*"
+              name="no_of_slices"
+              type="number"
+              formik={formik}
+            />
+
+            <TextInput
+              label="Diameter:*"
+              name="diameter"
+              type="number"
+              step="0.01"
+              formik={formik}
+            />
+          </div>
+        )}
+        {formik.values.type === "soup" && (
+          <div>
+            <TextInput
+              label="Spiciness scale (1-10):*"
+              name="spiciness_scale"
+              type="number"
+              formik={formik}
+            />
+          </div>
+        )}
+        {formik.values.type === "sandwich" && (
+          <div>
+            <TextInput
+              label="Slices of bread:*"
+              name="slices_of_bread"
+              type="number"
+              formik={formik}
+            />
+          </div>
+        )}
+        <Button type="submit">Submit</Button>
+      </Form>
+      {notification && (
+        <Notification
+          status={notification.status}
+          title={notification.title}
+          message={notification.message}
+        />
       )}
-      <button type="submit">Submit</button>
-    </form>
+    </>
   );
 };
 
