@@ -18,8 +18,8 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  border: 3px solid ${({ theme }) => theme.colors.swamp};
-  border-radius: 5px;
+  border: 4px solid ${({ theme }) => theme.colors.swamp};
+  border-radius: 8px;
   width: 100%;
   max-width: 400px;
   padding: 10px;
