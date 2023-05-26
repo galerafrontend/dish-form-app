@@ -8,14 +8,14 @@ export const dishValidationSchema = Yup.object({
       "Invalid format. Please use HH:MM:SS"
     )
     .required("FIeld is required"),
-  type: Yup.string().required("Filed is required"),
+  type: Yup.string().required("Field is required"),
   no_of_slices: Yup.number().when("type", {
     is: "pizza",
     then: () =>
       Yup.number()
         .min(2, "It could be at least 2 slices")
         .max(10, "It could be a max of 10 slices")
-        .required("Filed is required"),
+        .required("Field is required"),
   }),
   diameter: Yup.number().when("type", {
     is: "pizza",
@@ -39,6 +39,6 @@ export const dishValidationSchema = Yup.object({
       Yup.number()
         .min(1, "It could be at least 1 slice")
         .max(10, "It could be max of 10 slices")
-        .required("Filed is required"),
+        .required("Field is required"),
   }),
 });
