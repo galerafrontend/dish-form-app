@@ -1,7 +1,7 @@
 import { NotificationContainer, Title, Text } from "./styled";
 
 const Notification = ({ title, message, status }) => {
-  const styledClasses = `notification ${status}`;
+  const styledClasses =  `${status}`;
 
   return (
     <NotificationContainer className={styledClasses}>
