@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Dish-Form-app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Demo
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+## Project Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This project contains a form for adding a dish. It utilizes the Formik library for form management and validation.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Install the project dependencies using npm:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+npm inastall
+```
 
-### `npm run build`
+## Configuration
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Open the `DishForm.js` file located in the `src/components` directory.
+2. Inside the `DishForm` component, you can customize the form fields according to your requirements. Currently, it supports fields such as dish name, preparation time, type of dish, number of slices, diameter, spiciness scale, and slices of bread.
+3. You can modify the validation rules for the form fields by editing the `dishValidationSchema.js` file located in the same directory. Update the validation rules using the Yup validation library.
+4. If needed, you can customize the form's submit logic inside the onSubmit function of the `formik` configuration object. This function is called when the form is submitted.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Start the development server `npm start` or use Demo
+2. Fill in the form fields and submit the form to add a new dish. Validation errors will be displayed if any of the fields are invalid.
+3. Upon successful submission, the form will be reset, and a success notification will be shown.
 
-### `npm run eject`
+## Additional Information
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- The `useStatus` and `getNotificationData` custom hooks are used to handle the status and display notifications based on the form submission result. You can modify the notification messages and styles in the `Notification` component.
+- The form makes use of custom `TextInput` and `SelectInput` components to render the input fields. You can customize these components or replace them with your own components as needed.
+- The form submission sends a POST request to an API endpoint using the `postDish` function from the `apiUtil.js` file. You can update this function to communicate with your own API or backend.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technologies Used
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React,
+- Formik,
+- Yup,
+- styled components,
+- React hooks,
+- custom hooks,
+- styled normalize
