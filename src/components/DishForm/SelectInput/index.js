@@ -1,8 +1,11 @@
+import { Error } from "../Error/styled";
+import { Label, Select } from "./styled";
+
 const SelectInput = ({ label, name, options, formik }) => {
   return (
     <>
-      <label htmlFor={name}>{label}</label>
-      <select
+      <Label htmlFor={name}>{label}</Label>
+      <Select
         id={name}
         name={name}
         onChange={formik.handleChange}
@@ -14,9 +17,9 @@ const SelectInput = ({ label, name, options, formik }) => {
             {option.text}
           </option>
         ))}
-      </select>
+      </Select>
       {formik.touched[name] && formik.errors[name] && (
-        <div>{formik.errors[name]}</div>
+        <Error>{formik.errors[name]}</Error>
       )}
     </>
   );
