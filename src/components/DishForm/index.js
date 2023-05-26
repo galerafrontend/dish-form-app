@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { filterValues, postDish } from "../../helpers/apiUtil";
 import { dishValidationSchema } from "./dishValidationSchema";
 import TextInput from "./TextInput";
 import SelectInput from "./SelectInput";
@@ -15,8 +16,25 @@ const DishForm = () => {
       slices_of_bread: "",
     },
     validationSchema: dishValidationSchema,
-    onSubmit: async (values) => {
-      console.log(values);
+    onSubmit: async (values, { setSubmitting, setErrors, resetForm }) => {
+      try {
+        const filteredValues = filterValues(values);
+
+        const response = await postDish(filteredValues);
+
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log(responseData);
+          console.log("Dish was added");
+          resetForm();
+          setSubmitting(false);
+        } else {
+          const errorData = await response.json();
+          setErrors(errorData);
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
     },
   });
 
