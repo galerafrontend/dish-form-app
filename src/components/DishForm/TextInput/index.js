@@ -1,8 +1,11 @@
+import { Input, Label } from "./styled";
+import { Error } from "../Error/styled";
+
 const TextInput = ({ label, name, formik, placeholder, step, type }) => {
   return (
     <>
-      <label htmlFor={name}>{label}</label>
-      <input
+      <Label htmlFor={name}>{label}</Label>
+      <Input
         id={name}
         name={name}
         type={type}
@@ -13,7 +16,7 @@ const TextInput = ({ label, name, formik, placeholder, step, type }) => {
         placeholder={placeholder}
       />
       {formik.touched[name] && formik.errors[name] && (
-        <div>{formik.errors[name]}</div>
+        <Error>{formik.errors[name]}</Error>
       )}
     </>
   );
