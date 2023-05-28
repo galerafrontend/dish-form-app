@@ -2,33 +2,30 @@ import styled from "styled-components";
 
 export const Label = styled.label`
   display: inline-flex;
-  width: 260px;
-  margin-top: 25px;
-  padding: 5px;
-  font-weight: bold;
-  font-size: 18px;
-  color: ${({ theme }) => theme.colors.white};
+  padding: 8px 0 8px 0;
+  font-weight: ${({ theme }) => theme.font.medium};
+  font-size: ${({ theme }) => theme.font.size.veryBig};
+  color: ${({ theme }) => theme.colors.black};
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-    max-width: 100%;
-    font-size: 14px;
-    margin-top: 15px;
-    padding: 10px;
+    font-size: ${({ theme }) => theme.font.size.medium};
+    padding: 6px 0 6px 0;
   }
 `;
 
 export const Input = styled.input`
-  border: 4px solid ${({ theme }) => theme.colors.swamp};
-  border-radius: 8px;
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius.small};
+  margin-bottom: 10px;
   width: 100%;
-  max-width: 400px;
   padding: 10px;
-  font-weight: 400;
-  font-size: 18px;
+  font-weight: ${({ theme }) => theme.font.medium};
+  font-size: ${({ theme }) => theme.font.size.veryBig};
+  box-shadow: ${({ theme }) => theme.boxShadow.field};
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-    max-width: 100%;
-    font-size: 14px;
+    font-size: ${({ theme }) => theme.font.size.medium};
     padding: 6px;
+    margin-bottom: 8px;
   }
 `;

@@ -1,54 +1,68 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+`;
 
 export const NotificationContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.fireFly};
+  background: ${({ theme }) => theme.colors.fireFly};
   padding: 0 20px;
-  box-shadow: 0 1px 8px ${({ theme }) => theme.colors.white};
+  box-shadow: ${({ theme }) => theme.boxShadow.info};
   position: fixed;
-  height: 100px;
-  bottom: 0;
+  height: 30px;
+  top: 0;
   width: 100%;
   left: 0;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
+  opacity: 0;
+  border-top-left-radius: ${({ theme }) => theme.borderRadius.big};
+  border-top-right-radius: ${({ theme }) => theme.borderRadius.big};
+  transform-origin: top;
+  animation: ${fadeIn} 0.2s ease 0.2s forwards;
 
   &.success {
-    background: ${({ theme }) => theme.colors.laPalma};
+    background: ${({ theme }) => theme.colors.pastelGreen};
   }
 
   &.error {
-    background: ${({ theme }) => theme.colors.oldBrick};
+    background: ${({ theme }) => theme.colors.thunderBird};
   }
 `;
 
 export const Title = styled.h2`
-  font-size: 32px;
-  font-weight: 400;
+  font-size: ${({ theme }) => theme.font.size.veryBig};
+  font-weight: ${({ theme }) => theme.font.medium};
   margin: 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-    font-size: 18px;
+    font-size: ${({ theme }) => theme.font.size.medium};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}px) {
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.font.size.small};
   }
 `;
 
 export const Text = styled.p`
-  font-size: 32px;
-  font-weight: 400;
+  font-size: ${({ theme }) => theme.font.size.veryBig};
+  font-weight: ${({ theme }) => theme.font.medium};
   margin: 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-    font-size: 18px;
+    font-size: ${({ theme }) => theme.font.size.medium};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}px) {
-    font-size: 12px;
+    font-size: ${({ theme }) => theme.font.size.small};
   }
 `;

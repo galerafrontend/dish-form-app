@@ -1,15 +1,13 @@
 import styled from "styled-components";
 
 export const Error = styled.div`
-  font-weight: 700;
-  font-size: 18px;
-  color: ${({ theme }) => theme.colors.carnation};
+  font-weight: ${({ theme }) => theme.font.thin};
+  font-size: ${({ theme }) => theme.font.size.medium};
+  color: ${({ theme }) => theme.colors.red};
   text-align: center;
-  padding: 10px;
-  margin-top: 10px;
+  padding-bottom: 3px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-    font-size: 12px;
-    margin-top: 6px;
+    font-size: ${({ theme }) => theme.font.size.verySmall};
   }
 `;
