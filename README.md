@@ -27,9 +27,9 @@ npm inastall
 
 ## Configuration
 
-1. Open the `DishForm.js` file located in the `src/components` directory.
+1. Open the `DishForm/index.js` file located in the `src/components` directory.
 2. Inside the `DishForm` component, you can customize the form fields according to your requirements. Currently, it supports fields such as dish name, preparation time, type of dish, number of slices, diameter, spiciness scale, and slices of bread.
-3. You can modify the validation rules for the form fields by editing the `dishValidationSchema.js` file located in the same directory. Update the validation rules using the Yup validation library.
+3. You can modify the validation rules for the form fields by editing the `dishValidationSchema.js` file located in the same directory. Update the validation rules using the `Yup` validation library.
 4. If needed, you can customize the form's submit logic inside the onSubmit function of the `formik` configuration object. This function is called when the form is submitted.
 
 ## Usage
