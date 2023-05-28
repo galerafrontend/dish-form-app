@@ -1,10 +1,10 @@
-import DishForm from "../../components/DishForm";
 import { Layout } from "../../components/Layout/styled";
+import Section from "../../components/Section";
 
 const App = () => {
   return (
     <Layout>
-      <DishForm />
+      <Section />
     </Layout>
   );
 };
