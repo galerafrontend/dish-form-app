@@ -8,6 +8,13 @@ https://galerafrontend.github.io/dish-form-app/
 
 This project contains a form for adding a dish. It utilizes the Formik library for form management and validation.
 
+## Prerequisites
+
+Before you start, ensure that you have the following installed on your machine:
+
+- Node.js (version 12 or above, i use v18.16.0)
+- npm (Node Package Manager, i use v9.6.7)
+
 ## Installation
 
 1. Clone the repository to your local machine.
